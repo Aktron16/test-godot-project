@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3bx4b66p4tkk"]
+
+[ext_resource type="SpriteFrames" uid="uid://bvwlktm8dfl7w" path="res://Resources/Cherry.tres" id="1_hqhuo"]
+[ext_resource type="Script" uid="uid://bmt4e8r4dn2tq" path="res://Scripts/cherries.gd" id="1_sjnya"]
+[ext_resource type="AudioStream" uid="uid://yprd4s3y0h73" path="res://Music/sfx/eating-sound-effect-36186.mp3" id="3_2nsut"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hqhuo"]
+radius = 9.0
+
+[node name="Cherries" type="Node2D"]
+script = ExtResource("1_sjnya")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_hqhuo")
+frame_progress = 0.863477
+speed_scale = 2.0
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_hqhuo")
+
+[node name="eat_cherry_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2nsut")
+volume_db = -15.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

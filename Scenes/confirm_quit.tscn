@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://v2iwyimlaauq"]
+
+[ext_resource type="StyleBox" uid="uid://cif6yvlu01gr7" path="res://Text_Styles/Hover.tres" id="1_dbrhs"]
+
+[sub_resource type="SystemFont" id="SystemFont_h2yge"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_1bvp3"]
+font = SubResource("SystemFont_h2yge")
+font_size = 36
+font_color = Color(0.498039, 0.717647, 0, 1)
+
+[node name="Confirm_Quit" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -285.0
+offset_top = -140.0
+offset_right = 285.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -174.5
+offset_right = 174.5
+offset_bottom = 199.0
+grow_horizontal = 2
+text = "Do you wanna Quit?"
+label_settings = SubResource("LabelSettings_1bvp3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Yes" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -73.0
+offset_right = 278.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = ExtResource("1_dbrhs")
+text = "Yes"
+
+[node name="No" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -285.0
+offset_top = -74.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = ExtResource("1_dbrhs")
+text = "No"

@@ -1,0 +1,21 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bovxhy6fd4g6e"]
+
+[ext_resource type="Texture2D" uid="uid://u0r0ue5ktf68" path="res://Godot/Assets/Props Items and VFX/Sunnyland items/Spritesheets/cherry.png" id="1_nbop3"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kldst"]
+texture = ExtResource("1_nbop3")
+texture_region_size = Vector2i(21, 21)
+0:0/animation_speed = 10.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(-2, 0)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:0/0 = 0
+
+[resource]
+physics_layer_0/collision_layer = 0
+sources/2 = SubResource("TileSetAtlasSource_kldst")

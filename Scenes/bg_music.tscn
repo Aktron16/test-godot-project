@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://il8uqxcianlr"]
+
+[ext_resource type="AudioStream" uid="uid://be4iduplb5rda" path="res://Music/game-music-loop-7-145285.mp3" id="1_p1osb"]
+[ext_resource type="Script" uid="uid://cbqoseno7nhoh" path="res://Scripts/bg_music.gd" id="1_snw56"]
+[ext_resource type="AudioStream" uid="uid://dtyw4mgfdc57s" path="res://Music/game-music-loop-8-145362.mp3" id="2_o6810"]
+[ext_resource type="AudioStream" uid="uid://ddddbs723wbpt" path="res://Music/game-music-loop-9-145494.mp3" id="3_snw56"]
+[ext_resource type="AudioStream" uid="uid://debe3k3cwttmo" path="res://Music/game-music-loop-10-145572.mp3" id="4_2hmu5"]
+
+[node name="bg_music" type="Node"]
+script = ExtResource("1_snw56")
+
+[node name="Track_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_p1osb")
+volume_db = -10.0
+
+[node name="Track_2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_o6810")
+volume_db = -10.0
+
+[node name="Track_3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_snw56")
+volume_db = -10.0
+
+[node name="Track_4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_2hmu5")
+volume_db = -10.0

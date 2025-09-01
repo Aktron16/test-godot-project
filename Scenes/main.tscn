@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://crni8mfw56qmd"]
+
+[ext_resource type="Script" uid="uid://bsskbv2acl0ul" path="res://Scripts/main.gd" id="1_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://v2iwyimlaauq" path="res://Scenes/confirm_quit.tscn" id="2_bo1nx"]
+[ext_resource type="Texture2D" uid="uid://cx60t6r6nce3n" path="res://Godot/Assets/Environments/Tall Forest/Tall Forest Pack/Previews/forest.png" id="3_8gbba"]
+[ext_resource type="Script" uid="uid://bijdp5y2ov87m" path="res://Scripts/parallax_background.gd" id="3_jjvhh"]
+[ext_resource type="AudioStream" uid="uid://bv78nll1rynt" path="res://Music/sinnesloschen-beam-117362.mp3" id="5_kry3j"]
+
+[sub_resource type="GDScript" id="GDScript_0xm2m"]
+script/source = "extends Button
+
+# Declare variables to access nodes
+@onready var canvas = $\"../Confirm_Quit\"
+@onready var button = $/root/Main/Quit
+
+func _ready():
+	# Hide canvas at the beginning
+	canvas.visible = false
+
+	# Connect the button signal to a function
+	button.pressed.connect(_on_confirm_quit_visibility_changed)
+	
+
+func _on_confirm_quit_visibility_changed() -> void:
+	canvas.visible = true
+"
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_bo1nx")
+
+[node name="Start" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 418.0
+offset_right = 257.0
+offset_bottom = 469.0
+text = "Start"
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 553.0
+offset_right = 257.0
+offset_bottom = 603.0
+text = "Quit"
+script = SubResource("GDScript_0xm2m")
+
+[node name="Confirm_Quit" parent="." instance=ExtResource("2_bo1nx")]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("3_jjvhh")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(2000, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2(2.725, 2.725)
+texture = ExtResource("3_8gbba")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(1000, 0)
+scale = Vector2(2.725, 2.725)
+texture = ExtResource("3_8gbba")
+centered = false
+flip_h = true
+
+[node name="menu_bg_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_kry3j")
+volume_db = -10.0
+autoplay = true
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Confirm_Quit/Panel/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="Confirm_Quit/Panel/No" to="." method="_on_no_pressed"]
+
+[editable path="Confirm_Quit"]
