@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var canvas = $CanvasLayer/Confirm_Quit
+@onready var upgrade_screen: player_upgrades = $CanvasLayer/Upgrade_screen
 
 @export var health_pack_amount := 20
 var cherry = preload("res://Scenes/cherries.tscn")
@@ -12,6 +13,7 @@ func _ready() -> void:
 	obj_spawner(cherry, health_pack_amount)
 	obj_spawner(gems, gems_amount)
 	canvas.visible = false
+	upgrade_screen.visible = false
 
 func rand_coord():
 	var x = randi_range(50,2070)

@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=4 uid="uid://b243p3qsjunid"]
+[gd_scene load_steps=9 format=4 uid="uid://b243p3qsjunid"]
 
 [ext_resource type="TileSet" uid="uid://b0d1vqavp1fv5" path="res://Resources/Swamp_Tile.tres" id="1_gl6un"]
 [ext_resource type="PackedScene" uid="uid://bu5bgwvq22usy" path="res://Player/Player.tscn" id="1_iukft"]
 [ext_resource type="Script" uid="uid://8xl61xsv1kdh" path="res://Scripts/game.gd" id="1_j5yw3"]
 [ext_resource type="PackedScene" uid="uid://bwpk55w1aiv52" path="res://Scenes/HUD.tscn" id="4_kldst"]
 [ext_resource type="PackedScene" uid="uid://v2iwyimlaauq" path="res://Scenes/confirm_quit.tscn" id="5_b2bpf"]
+[ext_resource type="PackedScene" uid="uid://c68icmjcee41a" path="res://Scenes/upgrades_screen.tscn" id="5_fgofq"]
 [ext_resource type="PackedScene" uid="uid://il8uqxcianlr" path="res://Scenes/bg_music.tscn" id="6_7lihs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fgofq"]
+size = Vector2(44, 36)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_j5yw3")
@@ -33,17 +37,48 @@ tile_set = ExtResource("1_gl6un")
 tile_map_data = PackedByteArray("AABXABkAAAAHAAMAAABWABgAAAAGAAMAAABWABkAAAAGAAQAAABZABgAAAAJAAMAAABZABkAAAAJAAQAAABWABcAAAABAAMAAABWABYAAAABAAEAAABZABcAAAAFAAMAAABZABYAAAAFAAEAAABXABYAAAADAAEAAABVABkAAAABAAQAAABaABkAAAAFAAQAAAA=")
 tile_set = ExtResource("1_gl6un")
 
+[node name="Area2D" type="Area2D" parent="TileMap/Terrain/Hill_1/Cave"]
+position = Vector2(1408, 404)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Terrain/Hill_1/Cave/Area2D"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_fgofq")
+
+[node name="Label" type="Label" parent="TileMap/Terrain/Hill_1/Cave/Area2D/CollisionShape2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = 1.0
+offset_right = 623.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+theme_override_font_sizes/font_size = 50
+text = "^ Deposit your gems here ^"
+horizontal_alignment = 1
+
 [node name="Player" parent="." instance=ExtResource("1_iukft")]
-position = Vector2(1411, 436)
+position = Vector2(1408, 443)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("4_kldst")]
 
+[node name="Upgrade_screen" parent="CanvasLayer" instance=ExtResource("5_fgofq")]
+visible = false
+
 [node name="Confirm_Quit" parent="CanvasLayer" instance=ExtResource("5_b2bpf")]
 
 [node name="bg_music" parent="." instance=ExtResource("6_7lihs")]
 
+[connection signal="body_entered" from="TileMap/Terrain/Hill_1/Cave/Area2D" to="Player" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="TileMap/Terrain/Hill_1/Cave/Area2D" to="Player" method="_on_area_2d_body_exited"]
 [connection signal="pressed" from="CanvasLayer/Confirm_Quit/Panel/Yes" to="." method="_on_yes_pressed"]
 [connection signal="pressed" from="CanvasLayer/Confirm_Quit/Panel/No" to="." method="_on_no_pressed"]
 

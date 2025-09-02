@@ -1,25 +1,41 @@
 extends CharacterBody2D
 
+var upgrade = player_upgrades.new()
+
 signal health_changed(new_health)
 signal score_update(new_score)
+signal max_health_changed(new_max_health)
+signal speed_n_max_speed_change(new_speed,new_max_speed)
 
-@export var Char_speed := 100
-@export var Char_accel := 10
-@export var health := 100:
+const HEALTH_N_SPEED_RES = preload("res://Resources/health_n_speed_res.tres")
+
+@onready var max_speed: int = HEALTH_N_SPEED_RES.max_speed
+@export var char_speed : int = HEALTH_N_SPEED_RES.speed:
+	set(value_speed):
+		char_speed = clamp(value_speed, 10, max_speed)
+
+@onready var Char_accel : int = 10
+@onready var max_health : int = HEALTH_N_SPEED_RES.max_health
+@export var health : int = 50:
 	set(value_1):
-		health = clamp(value_1,0,100)
+		health = clamp(value_1,0,max_health)
 
-@onready var points := 0:
+@onready var points : int = 0:
 	set(value_2):
 		points = clamp(value_2,0,1000)
 
-var input: Vector2
+var input: Vector2 = Vector2.ZERO
 @onready var anim = get_node("AnimationPlayer")
+@onready var upgrade_screen: player_upgrades = $"../CanvasLayer/Upgrade_screen"
 
 func _ready():
-	health = 50
+	upgrade_screen.change_max_health.connect(max_health_change)
+	upgrade_screen.change_max_speed.connect(max_speed_change)
+	upgrade_screen.change_speed.connect(speed_change)
 	emit_signal("health_changed", health)
 	emit_signal("score_update", points)
+	emit_signal("max_health_changed",max_health)
+	emit_signal("speed_n_max_speed_change",char_speed,max_speed)
 
 func get_input():
 	input.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -28,7 +44,7 @@ func get_input():
 
 func _physics_process(delta: float) -> void:
 	var player_input = get_input()
-	velocity = lerp(velocity ,player_input * Char_speed , delta * Char_accel)
+	velocity = lerp(velocity ,player_input * char_speed , delta * Char_accel)
 	move_and_slide()
 	
 		# Choose animation based on direction & movement
@@ -71,3 +87,30 @@ func score(point):
 	points += point
 	emit_signal("score_update",points)
 	#print(points)
+
+func max_health_change(maxhealth):
+	max_health = maxhealth
+	health = clamp(health, 0, max_health)
+	emit_signal("max_health_changed",max_health)
+	#print(max_health)
+
+func max_speed_change(maxspeed):
+	max_speed = maxspeed
+	char_speed = clamp(char_speed, 10, max_speed)
+	emit_signal("speed_n_max_speed_change",char_speed,max_speed)
+	#print(max_speed)
+
+func speed_change(speed):
+	char_speed = speed
+	char_speed = clamp(char_speed, 10, max_speed)
+	emit_signal("speed_n_max_speed_change",char_speed,max_speed)
+	#print(Char_speed)
+
+
+func _on_area_2d_body_entered(body) -> void:
+	if body.name == "Player":
+		upgrade_screen.visible = true
+
+func _on_area_2d_body_exited(body) -> void:
+	if body.name == "Player":
+		upgrade_screen.visible = false

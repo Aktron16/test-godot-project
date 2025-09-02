@@ -1,51 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://ctj302ndiqdj8"]
+[gd_scene load_steps=5 format=3 uid="uid://ctj302ndiqdj8"]
 
 [ext_resource type="Script" uid="uid://mxer4mb2nu0a" path="res://Scripts/gems.gd" id="1_1my28"]
-[ext_resource type="Texture2D" uid="uid://35imoofs7x3v" path="res://Godot/Assets/Props Items and VFX/Sunnyland items/Spritesheets/gem.png" id="1_1vp1u"]
+[ext_resource type="SpriteFrames" uid="uid://cxdg6uu1rk1tk" path="res://Resources/gems.tres" id="2_sddl8"]
 [ext_resource type="AudioStream" uid="uid://cmubvhl45h8pg" path="res://Music/sfx/retro-coin-4-236671.mp3" id="3_sddl8"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1my28"]
-atlas = ExtResource("1_1vp1u")
-region = Rect2(0, 0, 15, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sddl8"]
-atlas = ExtResource("1_1vp1u")
-region = Rect2(15, 0, 15, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mxvxx"]
-atlas = ExtResource("1_1vp1u")
-region = Rect2(30, 0, 15, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_in2ae"]
-atlas = ExtResource("1_1vp1u")
-region = Rect2(45, 0, 15, 13)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ftw22"]
-atlas = ExtResource("1_1vp1u")
-region = Rect2(60, 0, 15, 13)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_wgsbk"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1my28")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sddl8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mxvxx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_in2ae")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ftw22")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1vp1u"]
 radius = 7.0
@@ -54,9 +11,11 @@ radius = 7.0
 script = ExtResource("1_1my28")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_wgsbk")
+sprite_frames = ExtResource("2_sddl8")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_1vp1u")

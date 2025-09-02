@@ -1,7 +1,54 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwpk55w1aiv52"]
+[gd_scene load_steps=9 format=3 uid="uid://bwpk55w1aiv52"]
 
 [ext_resource type="Script" uid="uid://sj4h2r7grpbf" path="res://Scripts/hud.gd" id="1_jo1ms"]
 [ext_resource type="Texture2D" uid="uid://c7mt8nfqpetbx" path="res://Godot/Assets/Props Items and VFX/Sunnyland items/Sprites/gem/gem-1.png" id="1_sd512"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jo1ms"]
+border_width_bottom = 5
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psnte"]
+bg_color = Color(0, 1, 0, 1)
+border_width_bottom = 5
+border_color = Color(0, 0.552941, 0, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="Theme" id="Theme_s3jbq"]
+ProgressBar/colors/font_color = Color(0.00184105, 0.00184107, 0.00184108, 1)
+ProgressBar/font_sizes/font_size = 9
+ProgressBar/styles/background = SubResource("StyleBoxFlat_jo1ms")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_psnte")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c3eba"]
+border_width_bottom = 5
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g8s2e"]
+bg_color = Color(0, 0.104375, 0.999999, 1)
+border_width_bottom = 3
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Theme" id="Theme_t385i"]
+ProgressBar/colors/font_color = Color(0.00184105, 0.00184107, 0.00184108, 1)
+ProgressBar/font_sizes/font_size = 9
+ProgressBar/styles/background = SubResource("StyleBoxFlat_c3eba")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_g8s2e")
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -32,15 +79,49 @@ offset_bottom = 10.5
 grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 
-[node name="Health" type="Label" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 570.0
+offset_right = 325.0
+offset_bottom = 632.0
+
+[node name="Health_bar" type="ProgressBar" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+theme = SubResource("Theme_s3jbq")
+max_value = 50.0
+step = 1.0
+show_percentage = false
+
+[node name="Health" type="Label" parent="VBoxContainer/Health_bar"]
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 3.0
-offset_top = -54.0
-offset_right = 153.0
-offset_bottom = -14.0
-grow_vertical = 0
-scale = Vector2(1.2, 1.2)
-theme_override_font_sizes/font_size = 25
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Speed_bar" type="ProgressBar" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 10)
+layout_mode = 2
+size_flags_vertical = 8
+theme = SubResource("Theme_t385i")
+max_value = 50.0
+step = 1.0
+
+[node name="Label" type="Label" parent="VBoxContainer/Speed_bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 9
+text = "     Speed Percentage"
+vertical_alignment = 1

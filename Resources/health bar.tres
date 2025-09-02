@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cfdon0pbwdwcj"]
+
+[ext_resource type="StyleBox" uid="uid://dvckug0wi78c0" path="res://Resources/bar_background.tres" id="1_8mgrg"]
+[ext_resource type="StyleBox" uid="uid://cyco071ba5n01" path="res://Resources/speed_bar_fill.tres" id="2_8mgrg"]
+
+[resource]
+ProgressBar/colors/font_color = Color(0.00184105, 0.00184107, 0.00184108, 1)
+ProgressBar/font_sizes/font_size = 9
+ProgressBar/styles/background = ExtResource("1_8mgrg")
+ProgressBar/styles/fill = ExtResource("2_8mgrg")

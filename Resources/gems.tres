@@ -1,0 +1,46 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://cxdg6uu1rk1tk"]
+
+[ext_resource type="Texture2D" uid="uid://35imoofs7x3v" path="res://Godot/Assets/Props Items and VFX/Sunnyland items/Spritesheets/gem.png" id="1_yuhkq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1my28"]
+atlas = ExtResource("1_yuhkq")
+region = Rect2(0, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sddl8"]
+atlas = ExtResource("1_yuhkq")
+region = Rect2(15, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxvxx"]
+atlas = ExtResource("1_yuhkq")
+region = Rect2(30, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in2ae"]
+atlas = ExtResource("1_yuhkq")
+region = Rect2(45, 0, 15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftw22"]
+atlas = ExtResource("1_yuhkq")
+region = Rect2(60, 0, 15, 13)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1my28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sddl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxvxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in2ae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftw22")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
