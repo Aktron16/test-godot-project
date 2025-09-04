@@ -113,7 +113,7 @@ theme = SubResource("Theme_t385i")
 max_value = 50.0
 step = 1.0
 
-[node name="Label" type="Label" parent="VBoxContainer/Speed_bar"]
+[node name="Speed" type="Label" parent="VBoxContainer/Speed_bar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -123,5 +123,5 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 9
-text = "     Speed Percentage"
+text = "Speed Percentage"
 vertical_alignment = 1

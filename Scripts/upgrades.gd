@@ -17,7 +17,9 @@ signal change_speed(new_speed)
 @onready var decrease_maxspeed_bt: Button = $Panel/VBoxContainer2/HBoxContainer/decrease_maxspeed_bt
 @onready var increase_maxspeed_bt: Button = $Panel/VBoxContainer2/HBoxContainer/increase_maxspeed_bt
 
-@onready var speed : int = HEALTH_N_SPEED_RES.speed
+@onready var speed : int = HEALTH_N_SPEED_RES.speed :
+	set(value_speed):
+		speed = clamp(value_speed, 10, maxspeed)
 @onready var decrease_speed_bt: Button = $Panel/VBoxContainer3/HBoxContainer/decrease_speed_bt
 @onready var increase_speed_bt: Button = $Panel/VBoxContainer3/HBoxContainer/increase_speed_bt
 
@@ -50,16 +52,20 @@ func _on_increase_health_pressed():
 
 func _on_decrease_maxspeed_pressed():
 	maxspeed = max(maxspeed - 5, 10) # Prevent going below 10
+	#print(maxspeed)
 	emit_signal("change_max_speed", maxspeed)
 
 func _on_increase_maxspeed_pressed():
 	maxspeed += 5
+	#print(maxspeed)
 	emit_signal("change_max_speed", maxspeed)
 
 func _on_decrease_speed_pressed():
 	speed = max(speed - 5, 10)
+	#print(speed)
 	emit_signal("change_speed",speed)
 
 func _on_increase_speed_pressed():
 	speed += 5
+	#print(speed)
 	emit_signal("change_speed",speed)

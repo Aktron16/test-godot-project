@@ -5,6 +5,7 @@ extends Control
 @onready var health_label: Label = $VBoxContainer/Health_bar/Health
 @onready var health_bar: ProgressBar = $VBoxContainer/Health_bar
 @onready var speed_bar: ProgressBar = $VBoxContainer/Speed_bar
+@onready var speed_label: Label = $VBoxContainer/Speed_bar/Speed
 
 func _ready():
 	# Connect signals
@@ -34,5 +35,6 @@ func update_score_disp(score: int):
 	score_disp.text = "x " + str(score)
 
 func update_speed_disp(speed : int,max_speed : int):
+	speed_label.text = "    Speed Percentage (%d / %d)" % [speed, max_speed]
 	speed_bar.max_value = max_speed
 	speed_bar.value = speed
