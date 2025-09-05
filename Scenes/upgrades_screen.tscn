@@ -40,9 +40,10 @@ layout_mode = 2
 alignment = 1
 
 [node name="decrease_health_bt" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 50
 text = "-10"
@@ -52,14 +53,14 @@ layout_mode = 2
 size_flags_horizontal = 6
 theme_override_colors/font_color = Color(0.929412, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
-text = "Upgrade Health"
+text = "Upgrade Max Health"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="increase_health_bt" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 8
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 50
 text = "+10"
@@ -80,9 +81,10 @@ layout_mode = 2
 alignment = 1
 
 [node name="decrease_maxspeed_bt" type="Button" parent="Panel/VBoxContainer2/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 50
 text = "-5"
@@ -99,7 +101,7 @@ vertical_alignment = 1
 [node name="increase_maxspeed_bt" type="Button" parent="Panel/VBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 8
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 50
 text = "+5"
@@ -121,9 +123,10 @@ layout_mode = 2
 alignment = 1
 
 [node name="decrease_speed_bt" type="Button" parent="Panel/VBoxContainer3/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 0
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 50
 text = "-5"
@@ -140,7 +143,7 @@ vertical_alignment = 1
 [node name="increase_speed_bt" type="Button" parent="Panel/VBoxContainer3/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 8
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 50
 text = "+5"

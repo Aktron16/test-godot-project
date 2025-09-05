@@ -1,28 +1,32 @@
 extends CharacterBody2D
+class_name Player
 
 var upgrade = player_upgrades.new()
 
 signal health_changed(new_health)
-signal score_update(new_score)
 signal max_health_changed(new_max_health)
 signal speed_n_max_speed_change(new_speed,new_max_speed)
 
 const HEALTH_N_SPEED_RES = preload("res://Resources/health_n_speed_res.tres")
 
-@onready var max_speed: int = HEALTH_N_SPEED_RES.max_speed
-@export var char_speed : int = HEALTH_N_SPEED_RES.speed:
+var max_speed: int = HEALTH_N_SPEED_RES.max_speed
+var _char_speed : int =HEALTH_N_SPEED_RES.speed
+var char_speed : int :
+	get:
+		return _char_speed
 	set(value_speed):
-		char_speed = clamp(value_speed, 10, max_speed)
+		_char_speed = clamp(value_speed, 10, max_speed)
+		emit_signal("speed_n_max_speed_change", _char_speed, max_speed)
 
-@onready var Char_accel : int = 10
-@onready var max_health : int = HEALTH_N_SPEED_RES.max_health
-@export var health : int = 50:
+var char_accel : int = 10
+var max_health : int = HEALTH_N_SPEED_RES.max_health
+var _health : int = 50
+var health : int :
+	get:
+		return _health
 	set(value_1):
-		health = clamp(value_1,0,max_health)
-
-@onready var points : int = 0:
-	set(value_2):
-		points = clamp(value_2,0,1000)
+		_health = clamp(value_1,0,max_health)
+		emit_signal("health_changed", _health)
 
 var input: Vector2 = Vector2.ZERO
 @onready var anim = get_node("AnimationPlayer")
@@ -33,7 +37,6 @@ func _ready():
 	upgrade_screen.change_max_speed.connect(max_speed_change)
 	upgrade_screen.change_speed.connect(speed_change)
 	emit_signal("health_changed", health)
-	emit_signal("score_update", points)
 	emit_signal("max_health_changed",max_health)
 	emit_signal("speed_n_max_speed_change",char_speed,max_speed)
 
@@ -44,7 +47,7 @@ func get_input():
 
 func _physics_process(delta: float) -> void:
 	var player_input = get_input()
-	velocity = lerp(velocity ,player_input * char_speed , delta * Char_accel)
+	velocity = lerp(velocity ,player_input * char_speed , delta * char_accel)
 	move_and_slide()
 	
 		# Choose animation based on direction & movement
@@ -56,8 +59,7 @@ func _physics_process(delta: float) -> void:
 func play_idle_animation():
 	if anim.current_animation.begins_with("Idle"):
 		return
-	var last_dir = get_last_direction()
-	anim.play("Idle_" + last_dir)
+	anim.play("Idle_" + get_last_direction())
 
 func play_run_animation(direction: Vector2):
 	var dir_name = get_direction_name(direction)
@@ -80,13 +82,6 @@ func get_last_direction() -> String:
 
 func heal(amount):
 	health += amount
-	emit_signal("health_changed",health)
-	#print(health)
-
-func score(point):
-	points += point
-	emit_signal("score_update",points)
-	#print(points)
 
 func max_health_change(maxhealth):
 	max_health = maxhealth
@@ -97,20 +92,15 @@ func max_health_change(maxhealth):
 func max_speed_change(maxspeed):
 	max_speed = maxspeed
 	char_speed = clamp(char_speed, 10, max_speed)
-	emit_signal("speed_n_max_speed_change",char_speed,max_speed)
-	#print(max_speed)
 
 func speed_change(speed):
-	char_speed = speed
-	char_speed = clamp(char_speed, 10, max_speed)
-	emit_signal("speed_n_max_speed_change",char_speed,max_speed)
-	#print(Char_speed)
+	char_speed = clamp(speed, 10, max_speed)
 
 
 func _on_area_2d_body_entered(body) -> void:
-	if body.name == "Player":
+	if body is CharacterBody2D:
 		upgrade_screen.visible = true
 
 func _on_area_2d_body_exited(body) -> void:
-	if body.name == "Player":
+	if body is CharacterBody2D:
 		upgrade_screen.visible = false

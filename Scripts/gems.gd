@@ -10,10 +10,9 @@ func _ready() -> void:
 
 func _on_area_2d_body_entered(body: Node) -> void:
 	if body.name == "Player" and body is CharacterBody2D:
-		if body.has_method("score"):
-			body.score(points)
-			emit_signal("gem_collected")
-			gem_pick_sfx.play()
-			hide()
-			await gem_pick_sfx.finished
-			queue_free()
+		PointSystem.score_add(points)
+		emit_signal("gem_collected")
+		gem_pick_sfx.play()
+		hide()
+		await gem_pick_sfx.finished
+		queue_free()

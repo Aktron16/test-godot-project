@@ -60,7 +60,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.1, 0.1)
 theme_override_font_sizes/font_size = 50
-text = "^ Deposit your gems here ^"
+text = "Upgrades"
 horizontal_alignment = 1
 
 [node name="Player" parent="." instance=ExtResource("1_iukft")]
@@ -69,6 +69,7 @@ position = Vector2(1408, 443)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("4_kldst")]
+player_path = NodePath("../../Player")
 
 [node name="Upgrade_screen" parent="CanvasLayer" instance=ExtResource("5_fgofq")]
 visible = false
