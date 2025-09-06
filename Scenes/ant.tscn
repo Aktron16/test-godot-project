@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://d1sjuyo6bnpdt"]
 
 [ext_resource type="Texture2D" uid="uid://cpo5li3jidvaq" path="res://Godot/Assets/Characters/Enemies and NPC/ant/ant-sheet.png" id="1_3vc7g"]
-[ext_resource type="Script" uid="uid://m5afpq4434wi" path="res://Scenes/ant.gd" id="1_4ydk5"]
+[ext_resource type="Script" uid="uid://m5afpq4434wi" path="res://Scripts/ant.gd" id="1_4ydk5"]
 [ext_resource type="Resource" uid="uid://b6l33awrauasj" path="res://Resources/Ant_enemy_data.tres" id="2_fd48h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_riijy"]
@@ -99,7 +99,6 @@ enemy_data = ExtResource("2_fd48h")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 radius = 5.0
-debug_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2, -5)

@@ -9,7 +9,7 @@ var cherry = preload("res://Scenes/cherries.tscn")
 @export var gems_amount : int = 50
 var gems = preload("res://Scenes/gems.tscn")
 
-@export var enemies : int = 50
+@export var enemies : int = 10
 var ants = preload("res://Scenes/ant.tscn")
 
 func _ready() -> void:

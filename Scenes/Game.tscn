@@ -78,10 +78,9 @@ visible = false
 
 [node name="bg_music" parent="." instance=ExtResource("6_7lihs")]
 
-[node name="Ant" parent="." node_paths=PackedStringArray("player") instance_placeholder="res://Scenes/ant.tscn"]
+[node name="Ant" parent="." instance_placeholder="res://Scenes/ant.tscn"]
 visible = false
 scale = Vector2(0.35, 0.35)
-player = NodePath("../Player")
 
 [connection signal="body_entered" from="Terrain/Hill_1/Cave/Area2D" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Terrain/Hill_1/Cave/Area2D" to="Player" method="_on_area_2d_body_exited"]
