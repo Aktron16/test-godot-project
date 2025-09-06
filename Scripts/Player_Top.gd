@@ -98,9 +98,9 @@ func speed_change(speed):
 
 
 func _on_area_2d_body_entered(body) -> void:
-	if body is CharacterBody2D:
+	if body is CharacterBody2D and body.name == "Player":
 		upgrade_screen.visible = true
 
 func _on_area_2d_body_exited(body) -> void:
-	if body is CharacterBody2D:
+	if body is CharacterBody2D and body.name == "Player":
 		upgrade_screen.visible = false

@@ -1,0 +1,9 @@
+[gd_resource type="NavigationPolygon" format=3 uid="uid://bjfxvkk1cviqp"]
+
+[resource]
+vertices = PackedVector2Array(2110, -1, 2110, 621, 2109, 593, 2109, 19, 1413.93, 417, 1453, 417, 2095, 575, 1025, 575, 1025, 571, 2095, 33, 1453, 395, 48, -1, 1011, 19, 48, 621, 1011, 593, 1005, 593, 963, 593, 963, 19, 1025, 37, 1025, 33, 1437, 355, 1411, 355, 1439, 395, 1439, 399, 1437, 399, 1411, 373, 1423, 373, 1423, 383, 1393, 383, 1393, 373, 1405, 373, 1405, 355, 1379, 355, 1379, 399, 1377, 399, 1377, 395, 1011, 571, 1005, 571, 991, 571, 991, 575, 977, 575, 977, 33, 991, 33, 991, 37, 1005, 37, 1363, 395, 1363, 417, 1011, 37, 1402.07, 417, 1406.08, 413, 1409.92, 413, 1005, 19)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(9, 6, 5, 10), PackedInt32Array(11, 0, 3, 12), PackedInt32Array(2, 1, 13, 14), PackedInt32Array(15, 14, 13), PackedInt32Array(16, 15, 13), PackedInt32Array(16, 13, 11, 17), PackedInt32Array(18, 19, 9, 20, 21), PackedInt32Array(22, 23, 24, 20), PackedInt32Array(25, 26, 27, 28), PackedInt32Array(28, 29, 30), PackedInt32Array(25, 28, 30), PackedInt32Array(21, 25, 30, 31), PackedInt32Array(32, 33, 34, 35), PackedInt32Array(36, 14, 15, 37), PackedInt32Array(38, 39, 40, 41), PackedInt32Array(41, 42, 43), PackedInt32Array(38, 41, 43, 37), PackedInt32Array(37, 43, 44, 36), PackedInt32Array(45, 46, 8, 36, 44, 47), PackedInt32Array(10, 22, 20, 9), PackedInt32Array(18, 21, 31), PackedInt32Array(18, 31, 32), PackedInt32Array(18, 32, 35, 45, 47), PackedInt32Array(48, 49, 50, 4), PackedInt32Array(48, 4, 8), PackedInt32Array(46, 48, 8), PackedInt32Array(12, 47, 44, 51), PackedInt32Array(11, 12, 51), PackedInt32Array(11, 51, 17)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(40, -16, 2124, -20, 2126, 636, 36, 642)])
+source_geometry_mode = 1
+source_geometry_group_name = &"nav_mesh"
+agent_radius = 5.0
