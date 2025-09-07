@@ -1,7 +1,7 @@
 extends Node
 class_name player_upgrades
 
-const HEALTH_N_SPEED_RES = preload("res://Resources/health_n_speed_res.tres")
+const HEALTH_N_SPEED_RES := preload("res://Player/health_n_speed_res.tres") as health_n_speed_res
 
 signal change_max_health(new_max_health)
 signal change_max_speed(new_max_speed)

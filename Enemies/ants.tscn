@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://df0runuwok6o6"]
+
+[ext_resource type="SpriteFrames" uid="uid://djcornjxpb4r5" path="res://Enemies/Enemies_Res/Ants_anim.tres" id="1_emmev"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrt3q"]
+size = Vector2(27, 20)
+
+[node name="Ants" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_emmev")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.5, 6)
+shape = SubResource("RectangleShape2D_qrt3q")

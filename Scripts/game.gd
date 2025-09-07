@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var player : Player = $Player
 @onready var canvas = $CanvasLayer/Confirm_Quit
 @onready var upgrade_screen: player_upgrades = $CanvasLayer/Upgrade_screen
 
@@ -9,44 +10,67 @@ var cherry = preload("res://Scenes/cherries.tscn")
 @export var gems_amount : int = 50
 var gems = preload("res://Scenes/gems.tscn")
 
-@export var enemies : int = 10
-var ants = preload("res://Scenes/ant.tscn")
+@export var enemy_amount : int = 20
+var Enemy_scene = preload("res://Scenes/Enemies.tscn")
+const ANTS_RES = preload("res://Enemies/Enemies_Res/Ants_res.tres")
+const BATS_RES = preload("res://Enemies/Enemies_Res/Bats_res.tres")
+const BEAR_RES = preload("res://Enemies/Enemies_Res/Bear_res.tres")
 
 func _ready() -> void:
+	initial_enemy_spawner(enemy_amount)
 	obj_spawner(cherry, health_pack_amount)
 	obj_spawner(gems, gems_amount)
-	obj_spawner(ants, enemies)
 	canvas.visible = false
 	upgrade_screen.visible = false
 
 func rand_coord() -> Vector2:
 	return Vector2(randi_range(50, 2070), randi_range(20, 620))
 
+func rand_enemy():
+	var enemy_types = [ANTS_RES,BATS_RES,BEAR_RES]
+	return enemy_types.pick_random()
+
+func initial_enemy_spawner(e_amount : int):
+	for i in range(e_amount):
+		enemy_spawner()
+
+func enemy_spawner():
+	var enemy = Enemy_scene.instantiate()
+	enemy.enemy_data = rand_enemy()
+	enemy.global_position = rand_coord()
+	add_child(enemy)
+	
+	if enemy.is_in_group("Enemy"):
+		enemy.player = player
+	if enemy.has_signal("despawn"):
+		enemy.connect("despawn", Callable(self, "_respawn_enemy"))
+
 func obj_spawner(obj, amount : int ):
 	for i in range(amount):
-		spawner(obj, rand_coord())
+		spawner(obj)
 	#print("Spawned %d cherries" % amount)
 
-func spawner(obj,pos : Vector2):
+func spawner(obj):
 	var instance = obj.instantiate()
-	instance.position = pos
+	instance.position = rand_coord()
 	add_child(instance)
-# Connect the signal and replace the pack when it's used
+	
+	# Connect the signal and replace the pack when it's used
 	if instance.has_signal("health_pack_used"):
 		instance.connect("health_pack_used", Callable(self, "_on_health_pack_used"))
 	if instance.has_signal("gem_collected"):
 		instance.connect("gem_collected", Callable(self, "_on_gem_collected"))
-	if instance.has_signal("despawn"):
-		instance.connect("despawn", Callable(self, "_respawn_enemy"))
+
+
 
 func _on_health_pack_used():
-	call_deferred("spawner",cherry,rand_coord())
+	call_deferred("spawner",cherry)
 
 func _on_gem_collected():
-	call_deferred("spawner",gems,rand_coord())
+	call_deferred("spawner",gems)
 
 func _respawn_enemy():
-	call_deferred("spawner",ants,rand_coord())
+	call_deferred("enemy_spawner")
 
 
 func _on_yes_pressed() -> void:

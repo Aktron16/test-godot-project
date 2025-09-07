@@ -1,0 +1,65 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://2yfnsxtn0k0k"]
+
+[ext_resource type="Texture2D" uid="uid://lnw7pe05t2xl" path="res://Godot/Assets/Characters/Enemies and NPC/bat/bat-sheet.png" id="1_6pcrt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7esuq"]
+atlas = ExtResource("1_6pcrt")
+region = Rect2(159, 0, 53, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w71we"]
+atlas = ExtResource("1_6pcrt")
+region = Rect2(212, 0, 53, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74ug4"]
+atlas = ExtResource("1_6pcrt")
+region = Rect2(265, 0, 53, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jpia"]
+atlas = ExtResource("1_6pcrt")
+region = Rect2(318, 0, 53, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41ykw"]
+atlas = ExtResource("1_6pcrt")
+region = Rect2(0, 0, 53, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ab72u"]
+atlas = ExtResource("1_6pcrt")
+region = Rect2(53, 0, 53, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4v0n4"]
+atlas = ExtResource("1_6pcrt")
+region = Rect2(106, 0, 53, 57)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7esuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w71we")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74ug4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jpia")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41ykw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ab72u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4v0n4")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

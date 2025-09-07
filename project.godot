@@ -24,6 +24,10 @@ PointSystem="*res://Scripts/point_system.gd"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[global_group]
+
+Enemy=""
+
 [input]
 
 forward_up={

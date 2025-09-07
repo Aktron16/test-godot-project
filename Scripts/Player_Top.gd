@@ -7,7 +7,7 @@ signal health_changed(new_health)
 signal max_health_changed(new_max_health)
 signal speed_n_max_speed_change(new_speed,new_max_speed)
 
-const HEALTH_N_SPEED_RES = preload("res://Resources/health_n_speed_res.tres")
+const HEALTH_N_SPEED_RES = preload("res://Player/health_n_speed_res.tres") as health_n_speed_res
 
 var max_speed: int = HEALTH_N_SPEED_RES.max_speed
 var _char_speed : int =HEALTH_N_SPEED_RES.speed

@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="health_n_speed_res" load_steps=2 format=3 uid="uid://dpwlsoc2avdnb"]
 
-[ext_resource type="Script" uid="uid://ceyqxrf2qftpi" path="res://new_script.gd" id="1_mppib"]
+[ext_resource type="Script" uid="uid://ceyqxrf2qftpi" path="res://Player/HP_speed_script.gd" id="1_mppib"]
 
 [resource]
 script = ExtResource("1_mppib")
 max_health = 50
 max_speed = 50
+speed = 50
 metadata/_custom_type_script = "uid://ceyqxrf2qftpi"

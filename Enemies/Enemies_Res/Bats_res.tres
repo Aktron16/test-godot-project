@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Enemies" load_steps=3 format=3 uid="uid://ckiwbdkw0yu0"]
+
+[ext_resource type="Script" uid="uid://pwxumwnj728y" path="res://Scripts/Enemy.gd" id="1_nibps"]
+[ext_resource type="PackedScene" uid="uid://c6lojmyj01ro1" path="res://Enemies/bats.tscn" id="2_cvu86"]
+
+[resource]
+script = ExtResource("1_nibps")
+damage = 1
+speed = 35
+attack_range = 15.0
+attack_cooldown = 0.5
+sprite_scene = ExtResource("2_cvu86")
+metadata/_custom_type_script = "uid://pwxumwnj728y"

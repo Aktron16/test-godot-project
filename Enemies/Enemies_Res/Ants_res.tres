@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Enemies" load_steps=3 format=3 uid="uid://c662oohkgahti"]
+
+[ext_resource type="Script" uid="uid://pwxumwnj728y" path="res://Scripts/Enemy.gd" id="1_md26w"]
+[ext_resource type="PackedScene" uid="uid://df0runuwok6o6" path="res://Enemies/ants.tscn" id="2_yh3ic"]
+
+[resource]
+script = ExtResource("1_md26w")
+damage = 5
+speed = 20
+attack_range = 15.0
+attack_cooldown = 1.0
+sprite_scene = ExtResource("2_yh3ic")
+metadata/_custom_type_script = "uid://pwxumwnj728y"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Enemies" load_steps=3 format=3 uid="uid://cx3qyh1c684v4"]
+
+[ext_resource type="Script" uid="uid://pwxumwnj728y" path="res://Scripts/Enemy.gd" id="1_b6sdi"]
+[ext_resource type="PackedScene" uid="uid://dqa0dkneyoc7a" path="res://Enemies/bear.tscn" id="2_huaq3"]
+
+[resource]
+script = ExtResource("1_b6sdi")
+damage = 10
+speed = 10
+attack_range = 20.0
+attack_cooldown = 2.0
+sprite_scene = ExtResource("2_huaq3")
+metadata/_custom_type_script = "uid://pwxumwnj728y"
