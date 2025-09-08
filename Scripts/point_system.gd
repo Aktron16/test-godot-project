@@ -22,4 +22,7 @@ func score_add(point):
 func score_subtract(point):
 	points -= point
 	#print(points)
-	
+
+func reset():
+	_points = 0
+	emit_signal("score_update", _points)

@@ -71,8 +71,8 @@ func _animation(dir: Vector2):
 func attack():
 	if not player:
 		return
-	player.health -= enemy_data.damage
-	player.emit_signal("health_changed", player.health)
+	if player.has_method("hurt"):
+		player.hurt(enemy_data.damage)
 	can_attack = false
 	emit_signal("despawn")
 	queue_free()

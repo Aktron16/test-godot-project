@@ -6,6 +6,7 @@ var upgrade = player_upgrades.new()
 signal health_changed(new_health)
 signal max_health_changed(new_max_health)
 signal speed_n_max_speed_change(new_speed,new_max_speed)
+signal dead()
 
 const HEALTH_N_SPEED_RES = preload("res://Player/health_n_speed_res.tres") as health_n_speed_res
 
@@ -28,6 +29,8 @@ var health : int :
 		_health = clamp(value_1,0,max_health)
 		emit_signal("health_changed", _health)
 
+var hurting : bool = false
+var is_alive : bool = true
 var input: Vector2 = Vector2.ZERO
 @onready var anim = get_node("AnimationPlayer")
 @onready var upgrade_screen: player_upgrades = $"../CanvasLayer/Upgrade_screen"
@@ -45,16 +48,27 @@ func get_input():
 	input.y = Input.get_action_strength("down_back") - Input.get_action_strength("forward_up")
 	return input.normalized()
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("temp_dead"):
+		health -= (health-1)
+
 func _physics_process(delta: float) -> void:
 	var player_input = get_input()
 	velocity = lerp(velocity ,player_input * char_speed , delta * char_accel)
 	move_and_slide()
 	
-		# Choose animation based on direction & movement
-	if player_input.length() > 0:
+	# Choose animation based on direction & movement
+	if hurting:
+		return
+	if not is_alive:
+		return
+	if player_input.length() > 0 :
 		play_run_animation(player_input)
-	else:
+	elif player_input.length() == 0 :
 		play_idle_animation()
+	
+	if health <= 0 and is_alive:
+		_death()
 
 func play_idle_animation():
 	if anim.current_animation.begins_with("Idle"):
@@ -66,6 +80,9 @@ func play_run_animation(direction: Vector2):
 	if anim.current_animation == "Run_" + dir_name:
 		return
 	anim.play("Run_" + dir_name)
+
+func play_hurt_animation():
+	anim.play("Hurt_" + get_last_direction())
 
 func get_direction_name(direction: Vector2) -> String:
 	if abs(direction.x) > abs(direction.y):
@@ -83,6 +100,18 @@ func get_last_direction() -> String:
 func heal(amount):
 	health += amount
 
+func hurt(amount):
+	if not is_alive or health <= 0:
+		return  # ignore hits if dead or dying
+	health -= amount
+	hurting = true
+	play_hurt_animation()
+	anim.animation_finished.connect(_on_hurt_finished , CONNECT_ONE_SHOT)
+
+func _on_hurt_finished(anim_name : String):
+	if anim_name.begins_with("Hurt"):
+		hurting = false
+
 func max_health_change(maxhealth):
 	max_health = maxhealth
 	health = clamp(health, 0, max_health)
@@ -96,6 +125,17 @@ func max_speed_change(maxspeed):
 func speed_change(speed):
 	char_speed = clamp(speed, 10, max_speed)
 
+func _death():
+	if not is_alive:
+		return
+	is_alive = false
+	set_physics_process(false)
+	anim.play("Death")
+	anim.animation_finished.connect(_on_death_finished, CONNECT_ONE_SHOT)
+
+func _on_death_finished(anim_name : StringName):
+	if anim_name == "Death":
+		emit_signal("dead")
 
 func _on_area_2d_body_entered(body) -> void:
 	if body is CharacterBody2D and body.name == "Player":

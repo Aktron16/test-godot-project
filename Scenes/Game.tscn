@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://b243p3qsjunid"]
+[gd_scene load_steps=11 format=4 uid="uid://b243p3qsjunid"]
 
 [ext_resource type="TileSet" uid="uid://b0d1vqavp1fv5" path="res://Resources/Swamp_Tile.tres" id="1_gl6un"]
 [ext_resource type="PackedScene" uid="uid://bu5bgwvq22usy" path="res://Player/Player.tscn" id="1_iukft"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://v2iwyimlaauq" path="res://Scenes/confirm_quit.tscn" id="5_b2bpf"]
 [ext_resource type="PackedScene" uid="uid://c68icmjcee41a" path="res://Scenes/upgrades_screen.tscn" id="5_fgofq"]
 [ext_resource type="PackedScene" uid="uid://il8uqxcianlr" path="res://Scenes/bg_music.tscn" id="6_7lihs"]
+[ext_resource type="PackedScene" uid="uid://cljnoby58p1br" path="res://Scenes/death_screen.tscn" id="8_bf53h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fgofq"]
 size = Vector2(44, 36)
@@ -75,12 +76,19 @@ player_path = NodePath("../../Player")
 visible = false
 
 [node name="Confirm_Quit" parent="CanvasLayer" instance=ExtResource("5_b2bpf")]
+process_mode = 2
+
+[node name="Death_screen" parent="CanvasLayer" instance=ExtResource("8_bf53h")]
+process_mode = 2
+visible = false
 
 [node name="bg_music" parent="." instance=ExtResource("6_7lihs")]
 
 [connection signal="body_entered" from="Terrain/Hill_1/Cave/Area2D" to="Player" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Terrain/Hill_1/Cave/Area2D" to="Player" method="_on_area_2d_body_exited"]
 [connection signal="pressed" from="CanvasLayer/Confirm_Quit/Panel/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="CanvasLayer/Confirm_Quit/Panel/Yes" to="CanvasLayer/Confirm_Quit" method="_on_yes_pressed"]
 [connection signal="pressed" from="CanvasLayer/Confirm_Quit/Panel/No" to="." method="_on_no_pressed"]
+[connection signal="pressed" from="CanvasLayer/Confirm_Quit/Panel/No" to="CanvasLayer/Confirm_Quit" method="_on_no_pressed"]
 
 [editable path="CanvasLayer/Confirm_Quit"]

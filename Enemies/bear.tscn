@@ -2,8 +2,9 @@
 
 [ext_resource type="SpriteFrames" uid="uid://dyx1wasnw8qw3" path="res://Enemies/Enemies_Res/Bear_anim.tres" id="1_wiyv1"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_whcdw"]
-size = Vector2(33, 56)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wiyv1"]
+radius = 16.5
+height = 54.0
 
 [node name="Bear" type="CharacterBody2D"]
 
@@ -14,4 +15,4 @@ autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 4)
-shape = SubResource("RectangleShape2D_whcdw")
+shape = SubResource("CapsuleShape2D_wiyv1")
