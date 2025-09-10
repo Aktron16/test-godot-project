@@ -48,9 +48,9 @@ func get_input():
 	input.y = Input.get_action_strength("down_back") - Input.get_action_strength("forward_up")
 	return input.normalized()
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("temp_dead"):
-		health -= (health-1)
+#func _process(_delta: float) -> void:
+#	if Input.is_action_just_pressed("temp_dead"):
+#		health -= (health-1)
 
 func _physics_process(delta: float) -> void:
 	var player_input = get_input()
