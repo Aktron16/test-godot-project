@@ -7,7 +7,7 @@
 script = ExtResource("1_nibps")
 damage = 1
 speed = 35
-attack_range = 15.0
+attack_range = 15.5
 attack_cooldown = 0.5
 sprite_scene = ExtResource("2_cvu86")
 metadata/_custom_type_script = "uid://pwxumwnj728y"

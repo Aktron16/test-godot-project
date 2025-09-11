@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwpk55w1aiv52"]
+[gd_scene load_steps=10 format=3 uid="uid://bwpk55w1aiv52"]
 
 [ext_resource type="Script" uid="uid://sj4h2r7grpbf" path="res://Scripts/hud.gd" id="1_jo1ms"]
+[ext_resource type="Texture2D" uid="uid://35imoofs7x3v" path="res://Godot/Assets/Props Items and VFX/Sunnyland items/Spritesheets/gem.png" id="2_jo1ms"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sd512"]
-load_path = "res://.godot/imported/gem-1.png-da11ba217bf184895e70e3f75de4a8f1.ctex"
+[sub_resource type="AtlasTexture" id="AtlasTexture_psnte"]
+atlas = ExtResource("2_jo1ms")
+region = Rect2(14.9219, 0, 15.4678, 13)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jo1ms"]
 border_width_bottom = 5
@@ -66,7 +68,7 @@ layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(1.2, 1.2)
-texture = SubResource("CompressedTexture2D_sd512")
+texture = SubResource("AtlasTexture_psnte")
 stretch_mode = 5
 
 [node name="Score" type="Label" parent="Gem_texture"]
