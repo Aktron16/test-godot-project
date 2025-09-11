@@ -1,7 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://bwpk55w1aiv52"]
 
 [ext_resource type="Script" uid="uid://sj4h2r7grpbf" path="res://Scripts/hud.gd" id="1_jo1ms"]
-[ext_resource type="Texture2D" uid="uid://c7mt8nfqpetbx" path="res://Godot/Assets/Props Items and VFX/Sunnyland items/Sprites/gem/gem-1.png" id="1_sd512"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sd512"]
+load_path = "res://.godot/imported/gem-1.png-da11ba217bf184895e70e3f75de4a8f1.ctex"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jo1ms"]
 border_width_bottom = 5
@@ -64,7 +66,7 @@ layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(1.2, 1.2)
-texture = ExtResource("1_sd512")
+texture = SubResource("CompressedTexture2D_sd512")
 stretch_mode = 5
 
 [node name="Score" type="Label" parent="Gem_texture"]

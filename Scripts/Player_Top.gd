@@ -39,9 +39,13 @@ func _ready():
 	upgrade_screen.change_max_health.connect(max_health_change)
 	upgrade_screen.change_max_speed.connect(max_speed_change)
 	upgrade_screen.change_speed.connect(speed_change)
+
 	emit_signal("health_changed", health)
 	emit_signal("max_health_changed",max_health)
 	emit_signal("speed_n_max_speed_change",char_speed,max_speed)
+	
+	anim.animation_finished.connect(_on_hurt_finished)
+	anim.animation_finished.connect(_on_death_finished)
 
 func get_input():
 	input.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -106,7 +110,6 @@ func hurt(amount):
 	health -= amount
 	hurting = true
 	play_hurt_animation()
-	anim.animation_finished.connect(_on_hurt_finished , CONNECT_ONE_SHOT)
 
 func _on_hurt_finished(anim_name : String):
 	if anim_name.begins_with("Hurt"):
@@ -131,7 +134,6 @@ func _death():
 	is_alive = false
 	set_physics_process(false)
 	anim.play("Death")
-	anim.animation_finished.connect(_on_death_finished, CONNECT_ONE_SHOT)
 
 func _on_death_finished(anim_name : StringName):
 	if anim_name == "Death":
